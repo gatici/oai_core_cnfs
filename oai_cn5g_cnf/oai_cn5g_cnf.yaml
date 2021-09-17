@@ -1,0 +1,93 @@
+vnfd:
+  df:
+  - id: default-df
+    kdu-resource-profile:
+      - id: amf-scale
+        kdu-name: native-kdu
+        resource-name: amf
+        min-number-of-instances: 1
+        max-number-of-instances: 5
+      - id: smf-scale
+        kdu-name: native-kdu
+        resource-name: smf
+        min-number-of-instances: 1
+        max-number-of-instances: 5
+      - id: nrf-scale
+        kdu-name: native-kdu
+        resource-name: nrf
+        min-number-of-instances: 1
+        max-number-of-instances: 5
+      - id: gnb-scale
+        kdu-name: native-kdu
+        resource-name: gnb
+        min-number-of-instances: 1
+        max-number-of-instances: 5
+    scaling-aspect:
+      - id: scale-amf
+        name: scale-amf
+        max-scale-level: 10
+        aspect-delta-details:
+          deltas:
+            - id: kdu-delta
+              kdu-resource-delta:
+                - id: amf-scale
+                  number-of-instances: 1
+      - id: scale-smf
+        name: scale-smf
+        max-scale-level: 10
+        aspect-delta-details:
+          deltas:
+            - id: kdu-delta
+              kdu-resource-delta:
+                - id: smf-scale
+                  number-of-instances: 1
+      - id: scale-nrf
+        name: scale-nrf
+        max-scale-level: 10
+        aspect-delta-details:
+          deltas:
+            - id: kdu-delta
+              kdu-resource-delta:
+                - id: nrf-scale
+                  number-of-instances: 1
+      - id: scale-gnb
+        name: scale-gnb
+        max-scale-level: 10
+        aspect-delta-details:
+          deltas:
+            - id: kdu-delta
+              kdu-resource-delta:
+                - id: gnb-scale
+                  number-of-instances: 1
+    lcm-operations-configuration:
+      operate-vnf-op-config:
+        day1-2:
+          - id: native-kdu
+            config-primitive:
+            - name: starttcpdump
+              parameter:
+              - name: application-name
+                data-type: STRING
+                default-value: amf
+            - name: stoptcpdump
+              parameter:
+              - name: application-name
+                data-type: STRING
+                default-value: amf
+            - name: changeapiversion
+              parameter:
+              - name: application-name
+                data-type: STRING
+                default-value: nrf
+  ext-cpd:
+  - id: mgmt-ext
+    k8s-cluster-net: mgmtnet
+  id: oai_cn5g_cnf
+  k8s-cluster:
+    nets:
+    - id: mgmtnet
+  kdu:
+  - name: native-kdu
+    juju-bundle: bundle.yaml
+  mgmt-cp: mgmt-ext
+  product-name: oai_cn5g_cnf
