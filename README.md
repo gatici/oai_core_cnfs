@@ -4,7 +4,10 @@
 
 Build and copy builded charms using guide under charms folder.
 
-First execute ```bash build.sh``` than ```bash copy.sh```.
+First execute ```bash 
+build.sh``` 
+than ```bash
+copy.sh```.
 
 ## Upload Packages
 ```bash
