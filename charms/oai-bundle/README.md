@@ -19,3 +19,9 @@ Deploy bundle:
 ```bash
 juju deploy ./bundle.yaml --trust
 ```
+
+Copy charms in to CNF folder:
+
+```bash
+./copy.sh
+```
